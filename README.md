@@ -27,12 +27,6 @@ pip install -r requirements.txt
 ./manage.py migrate
 ```
 
-Загрузите фикстурные статьи командой
-```bash
-./manage.py loaddata fixtures/auth.json
-./manage.py loaddata fixtures/dump.json
-```
-
 Создайте в директории с проектом файл .env и заполните по примеру:
 
 
