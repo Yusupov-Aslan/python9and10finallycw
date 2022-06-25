@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # apps
     'ad',
+    'accounts',
 
 ]
 
@@ -127,6 +128,11 @@ STATIC_URL = 'static/'
 
 MEDIA_ROOT = BASE_DIR.joinpath('uploads')
 MEDIA_URL = '/uploads/'
+
+LOGOUT_REDIRECT_URL = "ad:index"
+LOGIN_REDIRECT_URL = "ad:index"
+
+LOGIN_URL = 'accounts:login'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

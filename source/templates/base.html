@@ -28,10 +28,28 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
 
-                {% block nav %}{% endblock %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'ad:create_ad' %}">Добавить объявление</a>
-                </li>
+                {% block nav %} {% endblock %}
+
+                {% if not user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'accounts:login' %}?next={{ request.get_full_path }}">Вход</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'accounts:registration' %}?next={{ request.get_full_path }}">Регистрация</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'ad:create_ad' %}">Добавить объявление</a>
+                    </li>
+                    <li class="nav-item">
+                        <p class="nav-link">Привет, <a
+                                href="{% url 'accounts:user-profile' user.id %}">{{ user.username }}</a></p>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="{% url 'accounts:logout' %}?next={{ request.get_full_path }}">Выход</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
 
