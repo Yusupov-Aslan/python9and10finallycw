@@ -21,7 +21,7 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ("avatar", "birth_date")
+        fields = ("avatar", "birth_date", "phone")
 
 
 class PasswordChangeForm(forms.ModelForm):

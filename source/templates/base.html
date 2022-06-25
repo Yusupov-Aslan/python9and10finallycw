@@ -41,9 +41,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'ad:create_ad' %}">Добавить объявление</a>
                     </li>
+                    {% if user.is_staff %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'ad:moderated_ad' %}">Объявления на проверку</a>
+                        </li>
+                    {% endif %}
                     <li class="nav-item">
                         <p class="nav-link">Привет, <a
-                                href="{% url 'accounts:user-profile' user.id %}">{{ user.username }}</a></p>
+                                href="{% url 'accounts:user_profile' user.id %}">{{ user.username }}</a></p>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"

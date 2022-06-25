@@ -23,6 +23,12 @@ class Profile(models.Model):
         blank=False
     )
 
+    phone = models.CharField(
+        max_length=32,
+        verbose_name="Номер",
+        null=True,
+        blank=True)
+
     class Meta:
         verbose_name = "Профиль"
         verbose_name_plural = "Профили"

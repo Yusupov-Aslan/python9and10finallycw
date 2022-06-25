@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -58,6 +58,13 @@ class AdIndexView(SearchView):
     ordering = ["-publication_date"]
     search_fields = ["title__icontains", "author__username__icontains"]
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(status="published")
+        if self.search_value:
+            query = self.get_query()
+            queryset = queryset.filter(query)
+        return queryset
 
 
 class AdCreateView(PermissionRequiredMixin, CreateView):
@@ -91,3 +98,19 @@ class AdUpdateView(PermissionRequiredMixin, UpdateView):
 
     def has_permission(self):
         return super().has_permission() or self.request.user == self.get_object().author
+
+
+class AdModerateView(LoginRequiredMixin, SearchView):
+    model = Ad
+    template_name = "ads/moderated.html"
+    paginate_by = 3
+    paginate_orphans = 0
+    context_object_name = "ads"
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(status="moderated")
+        if self.search_value:
+            query = self.get_query()
+            queryset = queryset.filter(query)
+        return queryset

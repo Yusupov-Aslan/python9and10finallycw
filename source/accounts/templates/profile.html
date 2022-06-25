@@ -3,10 +3,10 @@
 {% block nav %}
     {% if user_object == user %}
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:update-user' %}">Редактирвоать профиль</a>
+            <a class="nav-link" href="{% url 'accounts:update_user' user_object.pk %}">Редактирвоать профиль</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:change-password' %}">Изменить пароль</a>
+            <a class="nav-link" href="{% url 'accounts:change_password' user_object.pk %}">Изменить пароль</a>
         </li>
     {% endif %}
 {% endblock %}
@@ -17,6 +17,8 @@
     <p><strong>Дата рождения: </strong>{{ user_object.profile.birth_date|date:'d.m.Y'|default:"Не указана" }}</p>
     <p><strong>Фамилия: </strong>{{ user_object.last_name|default:"Не указана" }}</p>
     <p><strong>Имя: </strong>{{ user_object.first_name|default:"Не указанo" }}</p>
+    <p><strong>Номер тел.: </strong>{{ user_object.profile.phone|default:"Не указанo" }}</p>
+
 
     {% if user_object.profile.avatar %}
         <img src="{{ user_object.profile.avatar.url }}" alt="user avatar">

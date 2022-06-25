@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Объявления на проверку{% endblock %}
+{% block content %}
+    <br>
+    {% include 'partial/simple_search.html' %}
+    <br>
+
+    {% for a in ads %}
+        <br>
+        <div class="card" style="width: 18rem;">
+            {% if a.photo %}
+                <img src=" {{ a.photo.url }}" class="card-img-top" alt="Photo">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ a.title }}</h5>
+                <p class="card-text">{{ a.text }}</p>
+                <a href="{% url 'ad:detail_ad' a.pk %}" class="btn btn-primary">Details</a>
+            </div>
+        </div>
+    {% endfor %}
+    <br>
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
+    <br>
+    <br>
+{% endblock %}

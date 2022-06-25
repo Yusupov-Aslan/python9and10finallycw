@@ -11,6 +11,7 @@
             <p class="card-text">{{ ads.text }}</p>
             <p>{{ ads.coast }} </p>
             <p>{{ ads.author }}</p>
+            <p>{{ user.phone }} </p>
             {% if perms.ad.change_ad or user == ads.author %}
                 <a href="{% url 'ad:update_ad' ads.pk %}" class="btn btn-primary">Update</a>
             {% endif %}
