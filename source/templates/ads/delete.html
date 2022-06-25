@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {% include 'partial/form.html' with button_text="Удалить" %}
+    </form>
+    <br>
+    <button class="btn btn-primary"><a href="{% url "ad:detail_ad" ad.pk %}"></a>Нет</button>
+{% endblock %}

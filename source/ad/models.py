@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.urls import reverse
 
 UserModel = get_user_model()
 
@@ -8,7 +9,7 @@ STATUS_CHOICES = [("moderated", "Moderated"), ("published", "Published"),
 
 
 class Ad(models.Model):
-    photo = models.ImageField(null=True, blank=True, verbose_name='Изображение', upload_to='uploads/images')
+    photo = models.ImageField(null=True, blank=True, verbose_name='Изображение', upload_to='images')
     title = models.CharField(max_length=128, verbose_name="Заголовок")
     text = models.TextField(max_length=2000, blank=True, null=True, verbose_name="Описание")
     coast = models.DecimalField(null=True, blank=True, max_digits=9, decimal_places=2, verbose_name='Стоимость')
@@ -19,7 +20,10 @@ class Ad(models.Model):
                                  related_name='ads', verbose_name='Категории')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата изменения")
-    publication_date = models.DateTimeField(auto_now=True, verbose_name="Дата публикации")
+    publication_date = models.DateTimeField(null=True, blank=True, verbose_name="Дата публикации")
+
+    def get_absolute_url(self):
+        return reverse('ad:detail_ad', kwargs={'pk': self.pk})
 
     def __str__(self):
         return f"{self.pk}. {self.title}: {self.author} - {self.created_at}"

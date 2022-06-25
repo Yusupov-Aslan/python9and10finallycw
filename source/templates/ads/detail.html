@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Детальный просмотр{% endblock %}
+{% block content %}
+        <br>
+        <div class="card" style="width: 18rem;">
+            {% if ads.photo %}
+            <img src=" {{ ads.photo.url }}" class="card-img-top" alt="Photo">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ ads.title }}</h5>
+                <p class="card-text">{{ ads.text }}</p>
+                <p>{{ ads.coast }} </p>
+                <p>{{ ads.author }}</p>
+                <a href="{% url 'ad:update_ad' ads.pk %}" class="btn btn-primary">Update</a>
+                <a href="{% url 'ad:delete_ad' ads.pk %}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+{% endblock %}
