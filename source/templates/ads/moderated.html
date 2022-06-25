@@ -14,7 +14,9 @@
             <div class="card-body">
                 <h5 class="card-title">{{ a.title }}</h5>
                 <p class="card-text">{{ a.text }}</p>
-                <a href="{% url 'ad:detail_ad' a.pk %}" class="btn btn-primary">Details</a>
+                <a href="{% url 'ad:detail_ad' a.pk %}" class="btn btn-primary">Детали</a>
+                <button class="btn btn-primary">Одобрить</button>
+                <button class="btn btn-primary">Отклонить</button>
             </div>
         </div>
     {% endfor %}
@@ -24,4 +26,18 @@
     {% endif %}
     <br>
     <br>
+{% endblock %}
+{% block scripts %}
+    <script>
+        function approve(id) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+
+                }
+            };
+            xhttp.open("POST", "", true);
+            xhttp.send();
+        }
+    </script>
 {% endblock %}
