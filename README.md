@@ -46,7 +46,7 @@ POSTGRES_PORT=db_port
 
 POSTGRES_HOST=db_host
 
-DATABASE=postgres1
+DATABASE=postgres
 
 
 Чтобы запустить сервер выполните:
