@@ -6,5 +6,5 @@
         {% include 'partial/form.html' with button_text="Удалить" %}
     </form>
     <br>
-    <button class="btn btn-primary"><a href="{% url "ad:detail_ad" ad.pk %}"></a>Нет</button>
+    <a class="btn btn-primary" href="{% url "ad:detail_ad" ad.pk %}">Нет</a>
 {% endblock %}

@@ -87,8 +87,9 @@ class AdDetailView(DetailView):
 class AdDeleteView(PermissionRequiredMixin, DeleteView):
     model = Ad
     template_name = 'ads/delete.html'
-    success_url = reverse_lazy('ads:index')
+    success_url = reverse_lazy('ad:index')
     permission_required = "ad.delete_ad"
+
 
 class AdUpdateView(PermissionRequiredMixin, UpdateView):
     form_class = AdForm

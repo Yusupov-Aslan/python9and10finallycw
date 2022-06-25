@@ -10,12 +10,12 @@
             <h5 class="card-title"> {{ ads.title }}</h5>
             <p class="card-text">{{ ads.text|default:"Описание отсутствует" }}</p>
             <p>Цена: {{ ads.coast|default:"Не указанo"  }} </p>
-            <p>Автор: {{ ads.author }}</p>
+            <p>Автор: <a href="{% url 'accounts:user_profile' ads.author.pk %}" >{{ ads.author }}</a></p>
             <p>Номер телефона: {{ user.phone|default:"Не указан" }} </p>
             {% if perms.ad.change_ad or user == ads.author %}
                 <a href="{% url 'ad:update_ad' ads.pk %}" class="btn btn-primary">Update</a>
             {% endif %}
-            {% if perms.ad.delete_ad %}
+            {% if perms.ad.delete_ad or user == ads.author%}
                 <a href="{% url 'ad:delete_ad' ads.pk %}" class="btn btn-danger">Delete</a>
             {% endif %}
             <a href="{% url 'ad:index' %}" class="btn btn-dark">Back</a>
